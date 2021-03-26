@@ -1,0 +1,4 @@
+/* SELECT First_name,last_name,email FROM customer;
+SELECT DISTINCT(rating) FROM film;
+SELECT COUNT(DISTINCT(rating)) FROM film;*/
+SELECT COUNT(*) FROM film;	
