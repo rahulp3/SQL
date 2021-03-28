@@ -27,4 +27,10 @@ SELECT COUNT(*) FROM actor WHERE first_name ILIKE 'P%';
 SELECT DISTINCT (district) FROM address ORDER BY district ASC; 
 SELECT COUNT(*) FROM film WHERE rating = 'R' AND replacement_cost BETWEEN 5 AND 15; 
 SELECT COUNT(*) FROM film WHERE title ILIKE '%Truman%';
-SELECT MIN(replacement_cost),MAX(replacement_cost),COUNT(*),ROUND(AVG(replacement_cost),3),SUM(replacement_cost) FROM film; --Aggregate functions  */	
+SELECT MIN(replacement_cost),MAX(replacement_cost),COUNT(*),ROUND(AVG(replacement_cost),3),SUM(replacement_cost) FROM film; --Aggregate functions  
+SELECT customer_id,staff_id,COUNT(amount) FROM payment GROUP BY customer_id,staff_id ORDER BY COUNT(amount) ASC ; 
+SELECT DATE(payment_date) FROM payment; -- using the date function 
+SELECT staff_id,COUNT(payment_id) FROM payment GROUP BY staff_id; 
+SELECT rating,ROUND(AVG(replacement_cost),3) FROM film GROUP BY rating ORDER BY rating; 
+SELECT customer_id,SUM(amount) FROM Payment GROUP BY customer_id ORDER BY SUM(amount) DESC LIMIT 5;
+	
