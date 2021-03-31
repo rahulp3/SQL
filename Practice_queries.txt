@@ -1,0 +1,58 @@
+SELECT First_name,last_name,email FROM customer;
+SELECT DISTINCT(rating) FROM film;
+SELECT COUNT(DISTINCT(rating)) FROM film;
+SELECT COUNT(*) FROM film;
+SELECT * FROM Customer WHERE first_name = 'Jared';
+SELECT * FROM film WHERE rental_rate > 4 AND rental_rate < 4.5;
+SELECT email FROM Customer WHERE first_name = 'Nancy' AND last_name = 'Thomas';
+SELECT description FROM film WHERE title = 'Outlaw Hanky'; 
+SELECT phone FROM address WHERE address = '259 Ipoh Drive';
+SELECT * FROM Customer ORDER BY Customer_id ASC;
+SELECT first_name,last_name FROM Customer ORDER BY store_id DESC,first_name ASC;
+SELECT * FROM payment WHERE amount > 3 ORDER BY payment_date ASC LIMIT 10;
+SELECT payment_date,
+       customer_id,
+	   amount 
+	   FROM payment 
+	   ORDER BY payment_date ASC 
+	   LIMIT 10; 
+SELECT title,length FROM film ORDER BY length ASC LIMIT 5;
+SELECT COUNT(*) FROM film WHERE length <= 50 ;
+SELECT COUNT(*) FROM payment WHERE amount BETWEEN 8 and 9 LIMIT 10 ;
+SELECT * FROM payment WHERE Payment_date BETWEEN '2007-02-01' AND '2007-02-16';-- Includes all the payments untill 14 cause the timestamp goes up 00:00 hours and not 24:00 
+SELECT COUNT(*) FROM payment WHERE Amount NOT IN(2.99,9.98);
+SELECT * FROM Customer WHERE first_name ILIKE '_HER%'; 
+SELECT COUNT(*) FROM payment WHERE AMOUNT > 5;
+SELECT COUNT(*) FROM actor WHERE first_name ILIKE 'P%'; 
+SELECT DISTINCT (district) FROM address ORDER BY district ASC; 
+SELECT COUNT(*) FROM film WHERE rating = 'R' AND replacement_cost BETWEEN 5 AND 15; 
+SELECT COUNT(*) FROM film WHERE title ILIKE '%Truman%';
+SELECT MIN(replacement_cost),MAX(replacement_cost),COUNT(*),ROUND(AVG(replacement_cost),3),SUM(replacement_cost) FROM film; --Aggregate functions  
+SELECT customer_id,staff_id,COUNT(amount) FROM payment GROUP BY customer_id,staff_id ORDER BY COUNT(amount) ASC ; 
+SELECT DATE(payment_date) FROM payment; -- using the date function 
+SELECT staff_id,COUNT(payment_id) FROM payment GROUP BY staff_id; 
+SELECT rating,ROUND(AVG(replacement_cost),3) FROM film GROUP BY rating ORDER BY rating; 
+SELECT customer_id,SUM(amount) FROM Payment GROUP BY customer_id ORDER BY SUM(amount) DESC LIMIT 5;
+SELECT customer_id,COUNT(DISTINCT (payment_id)) FROM Payment GROUP BY customer_id HAVING COUNT(DISTINCT (payment_id)) >= 40 ORDER BY COUNT(DISTINCT (payment_id)) DESC; 
+SELECT customer_id,SUM(amount) FROM payment WHERE staff_id = 2 GROUP BY customer_id HAVING SUM(amount) >= 110 ORDER BY SUM(amount) DESC; 
+SELECT COUNT(*) FROM film WHERE title ILIKE 'J%'; 
+SELECT first_name,last_name FROM customer
+WHERE first_name LIKE 'E%'
+AND address_id <500
+ORDER BY customer_id DESC
+LIMIT 1;
+
+-- Queries using JOINS 
+
+SELECT amount AS cash FROM payment; 
+SELECT payment.customer_id,email FROM payment 
+INNER JOIN Customer
+ON payment.customer_id = customer.customer_id
+GROUP BY payment.customer_id,email
+ORDER BY payment.customer_id ASC; 
+SELECT * FROM customer 
+FULL OUTER JOIN payment
+ON customer.customer_id = payment.customer_id
+WHERE customer.customer_id IS null OR payment.payment_id IS null;
+ 
+	
