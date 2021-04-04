@@ -54,5 +54,14 @@ SELECT * FROM customer
 FULL OUTER JOIN payment
 ON customer.customer_id = payment.customer_id
 WHERE customer.customer_id IS null OR payment.payment_id IS null;
+SELECT film.film_id,film.title,inventory_id 
+FROM film
+LEFT OUTER JOIN inventory
+ON film.film_id = inventory.film_id
+WHERE inventory.inventory_id IS NULL; -- LEFT OUTER JOIN / LEFT JOIN with WHERE clause 
+SELECT film.film_id,film.title,inventory_id 
+FROM film
+RIGHT JOIN inventory
+ON film.film_id = inventory.film_id;
  
 	
