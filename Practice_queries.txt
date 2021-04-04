@@ -63,5 +63,15 @@ SELECT film.film_id,film.title,inventory_id
 FROM film
 RIGHT JOIN inventory
 ON film.film_id = inventory.film_id;
- 
+SELECT customer.email 
+FROM customer 
+INNER JOIN address
+ON address.address_id = customer.address_id
+WHERE address.district = 'California';   
+SELECT title,first_name,last_name FROM film
+INNER JOIN film_actor
+ON film.film_id = film_actor.film_id
+INNER JOIN actor
+ON actor.actor_id = film_actor.actor_id
+WHERE actor.first_name = 'Nick' AND actor.last_name = 'Wahlberg'; 
 	
