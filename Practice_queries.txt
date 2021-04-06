@@ -74,4 +74,11 @@ ON film.film_id = film_actor.film_id
 INNER JOIN actor
 ON actor.actor_id = film_actor.actor_id
 WHERE actor.first_name = 'Nick' AND actor.last_name = 'Wahlberg'; 
-	
+
+-- Advanced SQL commands
+SHOW ALL; --Shows all system parameters
+SHOW TIMEZONE; 
+SELECT NOW();-- Gives the timestamp info 
+SELECT TIMEOFDAY(); --Timestamp in string
+SELECT CURRENT_TIME; --Just time
+SELECT CURRENT_DATE; --Just date	
