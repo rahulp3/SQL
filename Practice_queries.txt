@@ -81,4 +81,17 @@ SHOW TIMEZONE;
 SELECT NOW();-- Gives the timestamp info 
 SELECT TIMEOFDAY(); --Timestamp in string
 SELECT CURRENT_TIME; --Just time
-SELECT CURRENT_DATE; --Just date	
+SELECT CURRENT_DATE; --Just date
+SELECT AGE(payment_date) 
+FROM payment
+ORDER BY age;
+SELECT EXTRACT(YEAR FROM payment_date) 
+FROM payment; 
+SELECT TO_CHAR(Payment_date , 'MONTH - DY')
+FROM Payment;
+SELECT TO_CHAR(Payment_date , 'MONTH')
+FROM Payment
+GROUP BY TO_CHAR(Payment_date , 'MONTH');
+SELECT COUNT(*)
+FROM payment
+WHERE TO_CHAR(Payment_date,'DAY') = 'MONDAY   ' ; -- full upper case day name (blank-padded to 9 chars)
