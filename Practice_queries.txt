@@ -111,3 +111,24 @@ SELECT title,rental_rate
 FROM film
 WHERE rental_rate > (SELECT AVG(rental_rate) FROM film)
 ORDER BY rental_rate ASC; 
+SELECT * FROM rental
+WHERE return_date BETWEEN '2005-05-29' AND '2005-05-30'; 
+SELECT film_id,title
+FROM film
+WHERE film_id IN
+(SELECT inventory.film_id
+from rental
+INNER JOIN inventory ON inventory.inventory_id = rental.inventory_id
+WHERE return_date BETWEEN '2005-05-29' AND '2005-05-30')
+ORDER BY film_id; 
+SELECT first_name,last_name
+FROM customer AS C
+WHERE EXISTS
+(SELECT * FROM payment AS P
+WHERE p.customer_id = C.customer_id
+AND amount > 11); 
+SELECT tableA.length,tableA.title,tableB.title
+FROM film AS tableA
+JOIN film AS tableB 
+ON tableA.length = tableB.length
+AND tableA.title != tableb.title;
