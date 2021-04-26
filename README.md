@@ -10,3 +10,6 @@ https://www.postgresql.org/docs/9.5/functions-math.html
 
 ### String Functions and Operators
 https://www.postgresql.org/docs/9.1/functions-string.html
+
+### Datatype
+https://www.postgresql.org/docs/current/datatype.html
