@@ -15,3 +15,14 @@ CREATE TABLE Account_Job(
 	job_id INTEGER REFERENCES job(job_id),
 	hire_date TIMESTAMP
 );
+
+INSERT INTO Account(username,password,email,created_on)
+VALUES
+('rahulcsk','pass345','rahull@mail.com',CURRENT_TIMESTAMP);
+INSERT INTO job(job_desc)
+VALUES 
+('Assc Software Developer'),
+('software developer');
+INSERT INTO account_job(user_id,job_id,hire_date)
+VALUES
+(1,1,CURRENT_TIMESTAMP);
