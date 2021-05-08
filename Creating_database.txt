@@ -11,7 +11,7 @@ CREATE TABLE Job(
 	 job_desc VARCHAR(300) NOT NULL
 );
 CREATE TABLE Account_Job(
-    user_id INTEGER REFERENCES ACCOUNT(USER_ID),
+    	user_id INTEGER REFERENCES ACCOUNT(USER_ID),
 	job_id INTEGER REFERENCES job(job_id),
 	hire_date TIMESTAMP
 );
