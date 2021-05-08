@@ -1,0 +1,17 @@
+CREATE TABLE Account(
+   user_id SERIAL PRIMARY KEY,
+	username VARCHAR(50) UNIQUE NOT NULL,
+	password VARCHAR(50) NOT NULL,
+	email VARCHAR(50) NOT NULL,
+	created_on TIMESTAMP NOT NULL,
+	last_login TIMESTAMP 
+);
+CREATE TABLE Job(
+   job_id SERIAL PRIMARY KEY,
+	 job_desc VARCHAR(300) NOT NULL
+);
+CREATE TABLE Account_Job(
+    user_id INTEGER REFERENCES ACCOUNT(USER_ID),
+	job_id INTEGER REFERENCES job(job_id),
+	hire_date TIMESTAMP
+);
