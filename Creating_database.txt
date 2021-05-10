@@ -61,3 +61,28 @@ INSERT INTO employees(first_name,last_name,birthdate,hire_date,salary)
 VALUES 
 ('JOSE','PORTILLA','01-04-1900','2000-02-02',100);
 SELECT * FROM employees;
+
+CREATE TABLE students(
+	student_id SERIAL PRIMARY KEY,
+	first_name VARCHAR(50),
+	last_name VARCHAR(50),
+	homeroom_number INTEGER,
+	phone INTEGER NOT NULL UNIQUE,
+	email VARCHAR(50) UNIQUE,
+	graduation_year INTEGER 
+);
+CREATE TABLE Teachers(
+	teacher_id SERIAL PRIMARY KEY,
+	first_name VARCHAR(50),
+	last_name VARCHAR(50),
+	homeroom_number INTEGER,
+	phone INTEGER NOT NULL UNIQUE,
+	email VARCHAR(50) UNIQUE,
+	department VARCHAR(50) 
+);
+INSERT INTO Teachers(first_name,last_name,homeroom_number,department,email,phone)
+VALUES
+('Jonas','Watney',5,' Biology','jsalk@school.org','777-555-4321');
+ALTER TABLE Teachers
+ALTER COLUMN phone TYPE VARCHAR(15);
+SELECT * FROM students;
