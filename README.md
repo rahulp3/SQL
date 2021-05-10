@@ -13,3 +13,6 @@ https://www.postgresql.org/docs/9.1/functions-string.html
 
 ### Datatype
 https://www.postgresql.org/docs/current/datatype.html
+
+### ALTER command
+https://www.postgresql.org/docs/9.1/sql-altertable.html
