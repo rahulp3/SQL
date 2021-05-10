@@ -86,3 +86,33 @@ VALUES
 ALTER TABLE Teachers
 ALTER COLUMN phone TYPE VARCHAR(15);
 SELECT * FROM students;
+
+SELECT * FROM customer;
+SELECT customer_id,
+CASE
+    WHEN customer_id <= 100 THEN 'Premium'
+	WHEN customer_id BETWEEN 100 AND 200 THEN 'PLUS' 
+	ELSE 'Normal' 
+END AS acct_status
+FROM customer;
+SELECT customer_id,
+CASE customer_id WHEN 5 THEN 'First Prize'
+                 WHEN 39 THEN 'second prize'
+ELSE 'better luck next time'
+END AS Results
+FROM customer;
+SELECT * FROM film;
+SELECT 
+SUM(CASE rating 
+    WHEN 'R' THEN 1 
+	ELSE 0
+END) AS R,
+SUM(CASE rating 
+    WHEN 'PG' THEN 1 
+	ELSE 0
+END) AS PG,
+SUM(CASE rating 
+    WHEN 'PG-13' THEN 1 
+	ELSE 0
+END) AS PG13 
+FROM film;
