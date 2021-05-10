@@ -45,3 +45,19 @@ ALTER TABLE information
 RENAME TO new_info;
 ALTER TABLE new_info
 RENAME COLUMN person TO people;
+
+ALTER TABLE new_info
+DROP COLUMN IF EXISTS people;
+SELECT * FROM new_info;
+CREATE TABLE Employees(
+emp_id SERIAL PRIMARY KEY,
+	first_name VARCHAR(50) NOT NULL,
+	last_name VARCHAR(50) NOT NULL,
+	birthdate DATE CHECK(birthdate > '1900-01-01'),
+	hire_date DATE CHECK(hire_date > birthdate),
+	salary INTEGER CHECK(salary > 0)
+);
+INSERT INTO employees(first_name,last_name,birthdate,hire_date,salary)
+VALUES 
+('JOSE','PORTILLA','01-04-1900','2000-02-02',100);
+SELECT * FROM employees;
