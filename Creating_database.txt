@@ -140,3 +140,15 @@ FROM Depts;
 DELETE FROM Depts
 WHERE department = 'B';
 SELECT * FROM Depts;
+
+CREATE VIEW Customer_INFO AS
+SELECT first_name,last_name,address FROM customer
+INNER JOIN address
+ON customer.address_id = address.address_id ;
+SELECT * FROM Customer_INFO;
+CREATE OR REPLACE VIEW Customer_INFO AS
+SELECT first_name,last_name,address,district,active FROM customer
+INNER JOIN address
+ON customer.address_id = address.address_id ;
+DROP VIEW IF EXISTS customer_INFO;
+ALTER VIEW IF EXISTS customer_info RENAME TO customer_new_info;
