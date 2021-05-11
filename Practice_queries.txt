@@ -172,3 +172,5 @@ INNER JOIN cd.members
 ON cd.bookings.memid = cd.members.memid
 WHERE firstname = 'David' AND
 surname = 'Farrell';
+
+SELECT CITY FROM STATION WHERE MOD(ID, 2) = 0;-- Printing columns with even id'd
