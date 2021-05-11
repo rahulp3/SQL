@@ -24,3 +24,6 @@ https://www.postgresql.org/docs/current/sql-copy.html
 https://stackoverflow.com/questions/2987433/how-to-import-csv-file-data-into-a-postgresql-table </br>
 https://www.enterprisedb.com/postgres-tutorials/how-import-and-export-data-using-csv-files-postgresql </br>
 https://stackoverflow.com/questions/21018256/can-i-automatically-create-a-table-in-postgresql-from-a-csv-file-with-headers
+
+### Psycopg2 tutorial
+https://wiki.postgresql.org/wiki/Psycopg2_Tutorial
