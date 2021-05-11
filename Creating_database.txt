@@ -26,3 +26,129 @@ VALUES
 INSERT INTO account_job(user_id,job_id,hire_date)
 VALUES
 (1,1,CURRENT_TIMESTAMP);
+
+UPDATE account
+SET last_login = CURRENT_TIMESTAMP;
+UPDATE account
+SET last_login = created_on;
+UPDATE account_job
+SET hire_date = account.created_on
+FROM account
+WHERE account.user_id = account_job.user_id;
+UPDATE account
+SET last_login = CURRENT_TIMESTAMP
+RETURNING email,created_on,last_login ;
+
+ALTER TABLE new_info
+ALTER COLUMN people DROP NOT NULL;
+ALTER TABLE information
+RENAME TO new_info;
+ALTER TABLE new_info
+RENAME COLUMN person TO people;
+
+ALTER TABLE new_info
+DROP COLUMN IF EXISTS people;
+SELECT * FROM new_info;
+CREATE TABLE Employees(
+emp_id SERIAL PRIMARY KEY,
+	first_name VARCHAR(50) NOT NULL,
+	last_name VARCHAR(50) NOT NULL,
+	birthdate DATE CHECK(birthdate > '1900-01-01'),
+	hire_date DATE CHECK(hire_date > birthdate),
+	salary INTEGER CHECK(salary > 0)
+);
+INSERT INTO employees(first_name,last_name,birthdate,hire_date,salary)
+VALUES 
+('JOSE','PORTILLA','01-04-1900','2000-02-02',100);
+SELECT * FROM employees;
+
+CREATE TABLE students(
+	student_id SERIAL PRIMARY KEY,
+	first_name VARCHAR(50),
+	last_name VARCHAR(50),
+	homeroom_number INTEGER,
+	phone INTEGER NOT NULL UNIQUE,
+	email VARCHAR(50) UNIQUE,
+	graduation_year INTEGER 
+);
+CREATE TABLE Teachers(
+	teacher_id SERIAL PRIMARY KEY,
+	first_name VARCHAR(50),
+	last_name VARCHAR(50),
+	homeroom_number INTEGER,
+	phone INTEGER NOT NULL UNIQUE,
+	email VARCHAR(50) UNIQUE,
+	department VARCHAR(50) 
+);
+INSERT INTO Teachers(first_name,last_name,homeroom_number,department,email,phone)
+VALUES
+('Jonas','Watney',5,' Biology','jsalk@school.org','777-555-4321');
+ALTER TABLE Teachers
+ALTER COLUMN phone TYPE VARCHAR(15);
+SELECT * FROM students;
+
+SELECT * FROM customer;
+SELECT customer_id,
+CASE
+    WHEN customer_id <= 100 THEN 'Premium'
+	WHEN customer_id BETWEEN 100 AND 200 THEN 'PLUS' 
+	ELSE 'Normal' 
+END AS acct_status
+FROM customer;
+SELECT customer_id,
+CASE customer_id WHEN 5 THEN 'First Prize'
+                 WHEN 39 THEN 'second prize'
+ELSE 'better luck next time'
+END AS Results
+FROM customer;
+SELECT * FROM film;
+SELECT 
+SUM(CASE rating 
+    WHEN 'R' THEN 1 
+	ELSE 0
+END) AS R,
+SUM(CASE rating 
+    WHEN 'PG' THEN 1 
+	ELSE 0
+END) AS PG,
+SUM(CASE rating 
+    WHEN 'PG-13' THEN 1 
+	ELSE 0
+END) AS PG13 
+FROM film;
+
+SELECT CAST('5' AS INTEGER) AS new_int;
+SELECT '5':: INTEGER AS new_int;
+SELECT * FROM RENTAL;
+SELECT CHAR_LENGTH(CAST(inventory_id AS VARCHAR)) FROM rental;
+
+CREATE TABLE Depts(
+      first_name VARCHAR(50),
+	  department VARCHAR(50)
+);
+INSERT INTO Depts(first_name,department)
+VALUES
+('Vinton','A'),
+('Lauren','A'),
+('claire','B');
+SELECT * FROM Depts;
+SELECT (
+SUM(CASE department WHEN 'A' THEN 1 ELSE 0 END)/
+NULLIF(SUM(CASE department WHEN 'B' THEN 1 ELSE 0 END),0)
+) AS ratio
+FROM Depts;
+DELETE FROM Depts
+WHERE department = 'B';
+SELECT * FROM Depts;
+
+CREATE VIEW Customer_INFO AS
+SELECT first_name,last_name,address FROM customer
+INNER JOIN address
+ON customer.address_id = address.address_id ;
+SELECT * FROM Customer_INFO;
+CREATE OR REPLACE VIEW Customer_INFO AS
+SELECT first_name,last_name,address,district,active FROM customer
+INNER JOIN address
+ON customer.address_id = address.address_id ;
+DROP VIEW IF EXISTS customer_INFO;
+ALTER VIEW IF EXISTS customer_info RENAME TO customer_new_info;
