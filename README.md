@@ -16,3 +16,6 @@ https://www.postgresql.org/docs/current/datatype.html
 
 ### ALTER command
 https://www.postgresql.org/docs/9.1/sql-altertable.html
+
+###Compatible file types
+https://www.postgresql.org/docs/current/sql-copy.html
